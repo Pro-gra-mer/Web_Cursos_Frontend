@@ -4,7 +4,7 @@ import { AdminLayout } from "../layouts";
 import { Auth, Blog, Courses, Menu, Newsletter } from "../pages/admin";
 import { Users } from "../pages/admin/Users/Users";
 
-const user = { email: "rbk_po@hotmail.com" };
+const user = null;
 
 export function AdminRouter() {
   const loadLayout = (Layout, Page) => {
@@ -17,7 +17,7 @@ export function AdminRouter() {
   return (
     <Routes>
       {!user ? (
-        <Route path="/admin/*" element={loadLayout(AdminLayout, Auth)} />
+        <Route path="/admin/*" element={<Auth />} />
       ) : (
         <>
           {["/admin", "/admin/blog"].map((path) => (
