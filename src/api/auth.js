@@ -1,6 +1,8 @@
 import { ENV } from "../utils";
+
 export class Auth {
   baseApi = ENV.BASE_API;
+
   async register(data) {
     try {
       const url = `${this.baseApi}/${ENV.API_ROUTES.REGISTER}`;
@@ -14,9 +16,12 @@ export class Auth {
           password: data.password,
         }),
       };
+
       const response = await fetch(url, params);
       const result = await response.json();
+
       if (response.status !== 200) throw result;
+
       return result;
     } catch (error) {
       throw error;
@@ -62,6 +67,8 @@ export class Auth {
       const result = await response.json();
 
       if (response.status !== 200) throw result;
+
+      return result;
     } catch (error) {
       throw error;
     }
@@ -70,13 +77,16 @@ export class Auth {
   setAccessToken(token) {
     localStorage.setItem(ENV.JWT.ACCESS, token);
   }
-  getAccessToken(token) {
+
+  getAccessToken() {
     return localStorage.getItem(ENV.JWT.ACCESS);
   }
+
   setRefreshToken(token) {
     localStorage.setItem(ENV.JWT.REFRESH, token);
   }
-  getRefreshToken(token) {
+
+  getRefreshToken() {
     return localStorage.getItem(ENV.JWT.REFRESH);
   }
 
